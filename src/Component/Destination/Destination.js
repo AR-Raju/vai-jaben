@@ -15,6 +15,9 @@ const Destination = (e) => {
     if (e.target.name === "to") {
       loggedInUser.to = e.target.value;
     }
+    if (e.target.name === "date") {
+      loggedInUser.date = e.target.value;
+    }
   };
   return (
     <div>
@@ -36,6 +39,14 @@ const Destination = (e) => {
                 <input
                   type="text"
                   name="to"
+                  onInput={handleInput}
+                  id=""
+                  placeholder="to where"
+                />
+                <h6>Date</h6>
+                <input
+                  type="date"
+                  name="date"
                   onInput={handleInput}
                   id=""
                   placeholder="to where"

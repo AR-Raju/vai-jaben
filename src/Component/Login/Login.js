@@ -191,11 +191,7 @@ const Login = () => {
           />
           <br />
           <br />
-          {/* <input
-            onClick={handleSubmit}
-            type="submit"
-            value={newUser ? "sign up" : "sign in"}
-          /> */}
+
           {newUser ? (
             <button onClick={handleSubmit}>create an account</button>
           ) : (
@@ -235,24 +231,6 @@ const Login = () => {
         or
         <hr />
         <button onClick={handleSignIn}>continue with google </button>
-        {/* {/* {user.isSignedIn && (
-          <div>
-            <p>Name: {user.name}</p>
-            <p>Email: {user.email}</p>
-            <img src={user.photo} alt="" />
-          </div>
-        )}
-        <h1>Our own Authentication</h1>
-        <p>Name:{user.name} </p>
-        <p>Email: {user.email}</p>
-        <p>Password: {user.password}</p>
-        <input
-          type="checkbox"
-          name="newUser"
-          id=""
-          onChange={() => setNewUser(!newUser)}
-        /> */}
-        {/* <label htmlFor="newUser">NewUser Sign Up</label> */}
       </div>
     </div>
   );

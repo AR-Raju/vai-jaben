@@ -1,9 +1,11 @@
 import React, { useContext } from "react";
 import { Navbar, Nav, Container } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import { UserContex } from "../../App";
 
 const Header = () => {
   const [loggedInUser, setLoggedInUser] = useContext(UserContex);
+  console.log(loggedInUser);
   return (
     <Container>
       <Navbar>
@@ -14,17 +16,39 @@ const Header = () => {
           Vai Jaben
         </Navbar.Brand>
         <Nav className="ml-auto">
-          <Nav.Link href="/home">Home</Nav.Link>
-          <Nav.Link href="/destination">Destination</Nav.Link>
-          <Nav.Link href="">Blog</Nav.Link>
-          <Nav.Link href="">Contact</Nav.Link>
+          <Link className="mr-2" to="/home">
+            Home
+          </Link>
+          <Link className="mr-2" to="/destination">
+            Destination
+          </Link>
+          <Link className="mr-2" to="">
+            Blog
+          </Link>
+          <Link className="mr-2" to="">
+            Contact
+          </Link>
           {loggedInUser.email ? (
-            <Nav.Link href="/destination">{loggedInUser.email}</Nav.Link>
+            <Link className="mr-2" to="/destination">
+              {loggedInUser.email}
+            </Link>
           ) : (
-            <Nav.Link href="/login" className="text-white bg-warning px-2">
+            <Link
+              className="mr-2"
+              to="/login"
+              className="text-white bg-warning px-2"
+            >
               Login
-            </Nav.Link>
+            </Link>
           )}
+          <Link
+            className="mr-2"
+            to="/login"
+            className="text-white bg-warning px-2"
+            onClick={() => setLoggedInUser({})}
+          >
+            Logout
+          </Link>
         </Nav>
       </Navbar>
     </Container>

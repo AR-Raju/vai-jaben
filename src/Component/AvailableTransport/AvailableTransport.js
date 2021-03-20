@@ -47,6 +47,7 @@ const AvailableTransport = () => {
           <Col lg={6} sm={12}>
             <div className="box1">
               <div className="box2">
+                <h4>Journey Date - {loggedInUser.date}</h4>
                 <h4>From {loggedInUser.from} </h4>
                 <h4>To {loggedInUser.to}</h4>
               </div>

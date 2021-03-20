@@ -1,0 +1,10 @@
+.center {
+  display: flex;
+  justify-content: space-around;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 100px;
+  padding-bottom: 100px;
+  width: 200px;
+  height: 20%;
+}

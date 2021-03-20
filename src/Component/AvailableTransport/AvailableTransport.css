@@ -1,0 +1,20 @@
+.box1 {
+  border: 1px solid gray;
+  border-radius: 10px;
+  margin: 10px;
+  padding: 10px;
+  height: auto;
+  width: 25%;
+  min-width: 30%;
+  background-color: gray;
+}
+.box2 {
+  border: 1px solid lightsalmon;
+  border-radius: 10px;
+  margin: 10px;
+  padding: 10px;
+  height: auto;
+  width: 50%;
+  min-width: 90%;
+  background-color: lightsalmon;
+}

@@ -6,6 +6,7 @@ import { useContext, useState } from "react";
 import Header from "../Header/Header";
 import { UserContex } from "../../App";
 import { useHistory, useLocation } from "react-router";
+import { Link } from "react-router-dom";
 
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
@@ -46,12 +47,12 @@ const Login = () => {
       });
   };
 
-  const provider = new firebase.auth.GoogleAuthProvider();
+  const googleProvider = new firebase.auth.GoogleAuthProvider();
 
   const handleSignIn = () => {
     firebase
       .auth()
-      .signInWithPopup(provider)
+      .signInWithPopup(googleProvider)
       .then((res) => {
         const { displayName, photoURL, email } = res.user;
         const signedInUser = {
@@ -61,7 +62,8 @@ const Login = () => {
           photo: photoURL,
         };
         setUser(signedInUser);
-        // console.log(displayName, email, photoURL);
+        setLoggedInUser(signedInUser);
+        history.replace(from);
       })
       .catch((error) => {
         console.log(error.message);
@@ -94,10 +96,11 @@ const Login = () => {
         .then((res) => {
           // Signed in
           const newUserInfo = { ...user };
+
           newUserInfo.error = "";
           newUserInfo.success = true;
           setUser(newUserInfo);
-
+          setLoggedInUser(newUserInfo);
           updateUserName(user.name);
           // ...
         })
@@ -116,6 +119,7 @@ const Login = () => {
         .then((res) => {
           // Signed in
           const newUserInfo = { ...user };
+          newUserInfo.isSignedIn = true;
           newUserInfo.error = "";
           newUserInfo.success = true;
           setUser(newUserInfo);
@@ -145,6 +149,7 @@ const Login = () => {
       const passwordHasNumber = /\d{1}/.test(event.target.value);
       isFieldValid = isPasswordValid && passwordHasNumber;
     }
+
     if (isFieldValid) {
       const newUserInfo = { ...user };
       newUserInfo[event.target.name] = event.target.value;
@@ -154,13 +159,83 @@ const Login = () => {
   return (
     <div className="text-center">
       <Header></Header>
+
+      <div className="fieldset-style">
+        {newUser ? <h5>Create an account</h5> : <h5>Login</h5>}
+        <form onSubmit={handleSubmit}>
+          {newUser && (
+            <input
+              type="text"
+              onBlur={handleOnBlur}
+              name="name"
+              id=""
+              placeholder="Name"
+            />
+          )}
+          <br />
+          <input
+            type="email"
+            onBlur={handleOnBlur}
+            name="email"
+            placeholder="Email"
+            required
+          />
+          <br />
+          <input
+            type="password"
+            onBlur={handleOnBlur}
+            name="password"
+            id=""
+            placeholder="Password"
+            required
+          />
+          <br />
+          <br />
+          {/* <input
+            onClick={handleSubmit}
+            type="submit"
+            value={newUser ? "sign up" : "sign in"}
+          /> */}
+          {newUser ? (
+            <button onClick={handleSubmit}>create an account</button>
+          ) : (
+            <button onClick={handleSubmit}>Login</button>
+          )}
+          {newUser ? (
+            <p>
+              <small>
+                Already have an account?{" "}
+                <Link to="/login" onClick={() => setNewUser(!newUser)}>
+                  login
+                </Link>
+              </small>
+            </p>
+          ) : (
+            <p>
+              <small>
+                Don't have an account?{" "}
+                <Link to="/login" onClick={() => setNewUser(!newUser)}>
+                  create an account
+                </Link>
+              </small>
+            </p>
+          )}
+        </form>
+      </div>
+
+      {user.success ? (
+        <p style={{ color: "green" }}>
+          Account {newUser ? "created" : "Logged In"} successfully.
+        </p>
+      ) : (
+        <p style={{ color: "red" }}>{user.error}</p>
+      )}
       <div className="login-style">
-        {user.isSignedIn ? (
-          <button onClick={handleSignOut}>sign Out</button>
-        ) : (
-          <button onClick={handleSignIn}>Sign in</button>
-        )}
-        {user.isSignedIn && (
+        <hr />
+        or
+        <hr />
+        <button onClick={handleSignIn}>continue with google </button>
+        {/* {/* {user.isSignedIn && (
           <div>
             <p>Name: {user.name}</p>
             <p>Email: {user.email}</p>
@@ -176,51 +251,8 @@ const Login = () => {
           name="newUser"
           id=""
           onChange={() => setNewUser(!newUser)}
-        />
-        <label htmlFor="newUser">NewUser Sign Up</label>
-        <div className="fieldset-style">
-          <h5>Create an account</h5>
-          <form onSubmit={handleSubmit}>
-            {newUser && (
-              <input
-                type="text"
-                onBlur={handleOnBlur}
-                name="name"
-                id=""
-                placeholder="Your name"
-              />
-            )}
-            <br />
-            <input
-              type="email"
-              onBlur={handleOnBlur}
-              name="email"
-              placeholder="Your email address"
-              required
-            />
-            <br />
-            <input
-              type="password"
-              onBlur={handleOnBlur}
-              name="password"
-              id=""
-              placeholder="Your password"
-              required
-            />
-            <br />
-            <input
-              onClick={handleSubmit}
-              type="submit"
-              value={newUser ? "sign up" : "sign in"}
-            />
-          </form>
-        </div>
-        <p style={{ color: "red" }}>{user.error}</p>
-        {user.success && (
-          <p style={{ color: "green" }}>
-            Account {newUser ? "created" : "Logged In"} successfully.
-          </p>
-        )}
+        /> */}
+        {/* <label htmlFor="newUser">NewUser Sign Up</label> */}
       </div>
     </div>
   );

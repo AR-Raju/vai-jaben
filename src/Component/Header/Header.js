@@ -9,7 +9,7 @@ const Header = () => {
       <Navbar>
         <Navbar.Brand
           href="/home"
-          className="text-white font-weight-bold bg-warning mx-1 my-1 px-1"
+          className="text-white font-weight-bold bg-warning px-3"
         >
           Vai Jaben
         </Navbar.Brand>
@@ -18,10 +18,10 @@ const Header = () => {
           <Nav.Link href="/destination">Destination</Nav.Link>
           <Nav.Link href="">Blog</Nav.Link>
           <Nav.Link href="">Contact</Nav.Link>
-          {loggedInUser ? (
+          {loggedInUser.email ? (
             <Nav.Link href="/destination">{loggedInUser.email}</Nav.Link>
           ) : (
-            <Nav.Link href="/login" className="text-white bg-warning">
+            <Nav.Link href="/login" className="text-white bg-warning px-2">
               Login
             </Nav.Link>
           )}

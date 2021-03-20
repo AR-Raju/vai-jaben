@@ -1,7 +1,9 @@
 import React, { useContext, useState } from "react";
+import { Col, Container, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { UserContex } from "../../App";
 import Header from "../Header/Header";
+import map from "../../images/Map.png";
 
 const Destination = (e) => {
   const [loggedInUser, setLoggedInUser] = useContext(UserContex);
@@ -17,30 +19,40 @@ const Destination = (e) => {
   return (
     <div>
       <Header></Header>
-      {loggedInUser && (
-        <form>
-          <h6>From</h6>
-          <input
-            type="text"
-            name="from"
-            onInput={handleInput}
-            id=""
-            placeholder="from where"
-          />
-          <h6>To</h6>
-          <input
-            type="text"
-            name="to"
-            onInput={handleInput}
-            id=""
-            placeholder="to where"
-          />
-          <br />
-          <Link to="/available">
-            <button className="bg-danger">submit</button>
-          </Link>
-        </form>
-      )}
+      <Container>
+        <Row>
+          <Col lg={4} sm={12}>
+            {loggedInUser && (
+              <form>
+                <h6>From</h6>
+                <input
+                  type="text"
+                  name="from"
+                  onInput={handleInput}
+                  id=""
+                  placeholder="from where"
+                />
+                <h6>To</h6>
+                <input
+                  type="text"
+                  name="to"
+                  onInput={handleInput}
+                  id=""
+                  placeholder="to where"
+                />
+                <br />
+                <br />
+                <Link to="/available">
+                  <button className="bg-info">submit</button>
+                </Link>
+              </form>
+            )}
+          </Col>
+          <Col lg={8} sm={12}>
+            <img style={{ width: "auto" }} src={map} alt="" />
+          </Col>
+        </Row>
+      </Container>
     </div>
   );
 };

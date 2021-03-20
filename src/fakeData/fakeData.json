@@ -1,0 +1,30 @@
+[
+  {
+    "name": "Bike",
+    "Img": "https://ibb.co/h85Fhcz",
+    "seat": 7,
+    "rent": 7.75,
+    "id": 1
+  },
+  {
+    "name": "Bus",
+    "Img": "https://ibb.co/4NvFHt3",
+    "seat": 81,
+    "rent": 8.15,
+    "id": 2
+  },
+  {
+    "name": "Car",
+    "Img": "https://ibb.co/VN5QdMs",
+    "seat": 4,
+    "rent": 30,
+    "id": 3
+  },
+  {
+    "name": "Train",
+    "Img": "https://ibb.co/zhV2FZZ",
+    "seat": 68,
+    "rent": 4.96,
+    "id": 4
+  }
+]

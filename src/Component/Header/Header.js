@@ -5,7 +5,6 @@ import { UserContex } from "../../App";
 
 const Header = () => {
   const [loggedInUser, setLoggedInUser] = useContext(UserContex);
-  console.log(loggedInUser);
   return (
     <Container>
       <Navbar>
@@ -22,10 +21,10 @@ const Header = () => {
           <Link className="mr-2" to="/destination">
             Destination
           </Link>
-          <Link className="mr-2" to="">
+          <Link className="mr-2" to="/home">
             Blog
           </Link>
-          <Link className="mr-2" to="">
+          <Link className="mr-2" to="/home">
             Contact
           </Link>
           {loggedInUser.email ? (

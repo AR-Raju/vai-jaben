@@ -70,23 +70,23 @@ const Login = () => {
       });
   };
 
-  const handleSignOut = () => {
-    firebase
-      .auth()
-      .signOut()
-      .then((res) => {
-        const signOutUser = {
-          isSignedIn: false,
-          name: "",
-          password: "",
-          photo: "",
-          email: "",
-          success: false,
-        };
-        setUser(signOutUser);
-      })
-      .catch((error) => {});
-  };
+  // const handleSignOut = () => {
+  //   firebase
+  //     .auth()
+  //     .signOut()
+  //     .then((res) => {
+  //       const signOutUser = {
+  //         isSignedIn: false,
+  //         name: "",
+  //         password: "",
+  //         photo: "",
+  //         email: "",
+  //         success: false,
+  //       };
+  //       setUser(signOutUser);
+  //     })
+  //     .catch((error) => {});
+  // };
 
   const handleSubmit = (e) => {
     if (newUser && user.email && user.password) {

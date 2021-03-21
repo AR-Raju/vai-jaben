@@ -20,24 +20,28 @@ const Home = () => {
 
   const transport = [
     {
+      id: 1,
       name: "Bike",
       Img: bike,
       space: 2,
       rent: 30,
     },
     {
+      id: 2,
       name: "Car",
       Img: car,
       space: 4,
       rent: 80,
     },
     {
+      id: 3,
       name: "Bus",
       Img: bus,
       space: 5,
       rent: 20,
     },
     {
+      id: 4,
       name: "Train",
       Img: train,
       space: 60,
@@ -64,7 +68,7 @@ const Home = () => {
         <Row>
           {transport.map((tp) => (
             <Col className="d-flex justify-content-arround mt-5">
-              <Transport key={tp.name} transport={tp}></Transport>
+              <Transport key={tp.id} transport={tp}></Transport>
             </Col>
           ))}
         </Row>

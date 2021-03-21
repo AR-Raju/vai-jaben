@@ -7,7 +7,7 @@ import map from "../../images/Map.png";
 
 const Destination = (e) => {
   const [loggedInUser, setLoggedInUser] = useContext(UserContex);
-  const [input, setInput] = useState("");
+
   const handleInput = (e) => {
     if (e.target.name === "from") {
       loggedInUser.from = e.target.value;
@@ -32,7 +32,7 @@ const Destination = (e) => {
                   type="text"
                   name="from"
                   onInput={handleInput}
-                  id=""
+                  required
                   placeholder="from where"
                 />
                 <h6>To</h6>
@@ -40,7 +40,7 @@ const Destination = (e) => {
                   type="text"
                   name="to"
                   onInput={handleInput}
-                  id=""
+                  required
                   placeholder="to where"
                 />
                 <h6>Date</h6>
@@ -48,13 +48,13 @@ const Destination = (e) => {
                   type="date"
                   name="date"
                   onInput={handleInput}
-                  id=""
+                  required
                   placeholder="to where"
                 />
                 <br />
                 <br />
                 <Link to="/available">
-                  <button className="bg-info">submit</button>
+                  <button className="bg-info">Submit</button>
                 </Link>
               </form>
             )}
